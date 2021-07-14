@@ -28,6 +28,13 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 	@Autowired
 	private AdminService service ;
 	
+	///Admin can add Users
+	@PostMapping("/addUser")
+	public User userRegister(@RequestBody User user) {
+		LOG.info("addUser");
+		return service.userRegister(user);
+	}
+	
 	////Get All Users
 	@GetMapping("/getAllUsers")
 	public List<User> getAllUsers() {
@@ -81,4 +88,9 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 		service.deleteUserByfirstName(name);
 	}
 	
+	@PutMapping("/updateUserInfo/{id}")
+	public User updateMemId(@PathVariable("id") int id , @RequestBody User user) {
+		LOG.info("Update User Info");
+		return service.updateMemberInfo(id, user);
+	}
 }

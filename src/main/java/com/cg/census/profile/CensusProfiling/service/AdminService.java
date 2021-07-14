@@ -20,8 +20,8 @@ public class AdminService {
 	private UserRepository repository ;
 	
 	public User userRegister(User user) {
-	return repository.save(user);
-	}
+		return repository.save(user);
+		}
 	
 	public List<User> findUserByFirstName(String firstName){
 		LOG.info("findUserByFirstName");
@@ -56,5 +56,10 @@ public class AdminService {
 	
 	public void deleteUserByfirstName(String name){
 		  repository.deleteUserByfirstName(name);
-		}
+	}
+	public User updateMemberInfo(int id ,User user) {
+		User fMem = repository.getById(id);
+		fMem = user;
+		return repository.save(fMem);
+	}
 }
