@@ -49,7 +49,13 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 		LOG.info("getByFirstName");
 		return service.findUserByFirstName(firstName);
 	}
-
+	
+	/////Get Users by User ID
+	@GetMapping("/getUserById/{id}")
+	public User getUserById(@PathVariable("id") int id) {
+		LOG.info("getByFirstName");
+		return service.getUserById(id);
+	}
 	////Get Users by Last Name
 	@GetMapping("/getbylastname/{lastName}")
 	public List<User> getByLastName(@PathVariable("lastName") String lastName) {

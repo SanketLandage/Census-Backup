@@ -62,4 +62,8 @@ public class AdminService {
 		fMem = user;
 		return repository.save(fMem);
 	}
+	
+	public User getUserById(int id) {
+		return repository.findByuid(id);
+	}
 }
