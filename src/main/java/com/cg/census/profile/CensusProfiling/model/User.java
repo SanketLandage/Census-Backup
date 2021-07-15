@@ -73,7 +73,7 @@ public class User {
 	}
 
 	public User(int uid, String firstName, String lastName, String gender, String email, String password, int numOfKids,
-			String city, int age,List<UserFamilyMember> usermMem) {
+			String city,String educationalQualification, int age,List<UserFamilyMember> usermMem) {
 		super();
 		this.uid = uid;
 		this.firstName = firstName;
@@ -85,6 +85,8 @@ public class User {
 		this.city = city;
 		this.age= age;
 		this.usermMem = usermMem;
+		this.educationalQualification =educationalQualification;
+		
 	}
 
 	public String getCity() {
@@ -155,6 +157,22 @@ public class User {
 		this.password = password;
 	}
 	
+
+	public String getEducationalQualification() {
+		return educationalQualification;
+	}
+
+	public void setEducationalQualification(String educationalQualification) {
+		this.educationalQualification = educationalQualification;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
 
 	@Override
 	public String toString() {
