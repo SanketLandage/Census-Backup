@@ -18,7 +18,7 @@ public interface UserFamilyMemberRepository extends JpaRepository<UserFamilyMemb
 
 	public abstract List<UserFamilyMember> findBymemLastName(String memLastName);
 
-	public abstract List<UserFamilyMember> findByrelation(String relation);
+	public abstract List<UserFamilyMember> findByrelationWithMember(String relationWithMember);
 
-	public abstract List<UserFamilyMember> findBydob(String dob);
+	public abstract List<UserFamilyMember> findByageOfMember(int ageOfMember);
 }

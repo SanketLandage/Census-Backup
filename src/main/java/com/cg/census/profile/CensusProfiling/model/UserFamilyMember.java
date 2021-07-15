@@ -15,20 +15,23 @@ public class UserFamilyMember {
 	@Id
 	private int memId;
 
-	@Column
+	@Column(nullable = false)
 	private String memFirstName;
 
 	@Column
 	private String memLastName;
 
-	@Column
+	@Column(nullable = false)
 	private String memGender;
 
-	@Column
-	private String relation;
+	@Column(nullable = false)
+	private String relationWithMember;
 
-	@Column
-	private String dob;
+	@Column(nullable = false)
+	private int ageOfMember;
+
+	@Column(nullable = false)
+	private String education;
 
 	@JsonBackReference
 	@ManyToOne
@@ -38,15 +41,15 @@ public class UserFamilyMember {
 		super();
 	}
 
-	public UserFamilyMember(int memId, String memFirstName, String memLastName, String memGender, String relation,
-			String dob, User user) {
+	public UserFamilyMember(int memId, String memFirstName, String memLastName, String memGender,
+			String relationWithMember, int ageOfMember, User user) {
 		super();
 		this.memId = memId;
 		this.memFirstName = memFirstName;
 		this.memLastName = memLastName;
 		this.memGender = memGender;
-		this.relation = relation;
-		this.dob = dob;
+		this.relationWithMember = relationWithMember;
+		this.ageOfMember = ageOfMember;
 		this.user = user;
 	}
 
@@ -82,12 +85,12 @@ public class UserFamilyMember {
 		this.memGender = memGender;
 	}
 
-	public String getDob() {
-		return dob;
+	public int getAgeOfMember() {
+		return ageOfMember;
 	}
 
-	public void setDob(String dob) {
-		this.dob = dob;
+	public void setAgeOfMember(int ageOfMember) {
+		this.ageOfMember = ageOfMember;
 	}
 
 	public User getUser() {
@@ -98,12 +101,20 @@ public class UserFamilyMember {
 		this.user = user;
 	}
 
-	public String getRelation() {
-		return relation;
+	public String getRelationWithMember() {
+		return relationWithMember;
 	}
 
-	public void setRelation(String relation) {
-		this.relation = relation;
+	public void setRelationWithMember(String relationWithMember) {
+		this.relationWithMember = relationWithMember;
+	}
+
+	public String getEducation() {
+		return education;
+	}
+
+	public void setEducation(String education) {
+		this.education = education;
 	}
 
 }

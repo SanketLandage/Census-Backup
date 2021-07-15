@@ -56,11 +56,11 @@ public class UserService {
 	}
 
 	public List<UserFamilyMember> findByRelation(String relation) {
-		return memRepository.findByrelation(relation);
+		return memRepository.findByrelationWithMember(relation);
 	}
 
-	public List<UserFamilyMember> findByDob(String dob) {
-		return memRepository.findBydob(dob);
+	public List<UserFamilyMember> findByAge(int age) {
+		return memRepository.findByageOfMember(age);
 	}
 
 	public UserFamilyMember updateMemberInfo(int id ,UserFamilyMember member) {

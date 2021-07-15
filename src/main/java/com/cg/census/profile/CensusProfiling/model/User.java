@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -16,8 +18,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "Users")
 public class User {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int uid;
-	@Column
+	
+	@Column(nullable = false)
 	private String firstName;
 
 	@Column
@@ -26,16 +30,26 @@ public class User {
 	@Column
 	private String gender;
 
-	@Column
+	@Column(nullable = false, unique=true)
 	private String email;
 
-	@Column
+	@Column(nullable = false)
 	private String password;
 
 	@Column
 	private int numOfKids;
+
+	@Column(nullable = false)
+	private String city;
+	
+	@Column(nullable = false)
+	private String educationalQualification;
+	
+	@Column(nullable=false)
+	private int age;
+
 	@JsonManagedReference
-	@OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<UserFamilyMember> usermMem = new ArrayList<>();
 
 	public User() {
@@ -59,7 +73,7 @@ public class User {
 	}
 
 	public User(int uid, String firstName, String lastName, String gender, String email, String password, int numOfKids,
-			List<UserFamilyMember> usermMem) {
+			String city, int age,List<UserFamilyMember> usermMem) {
 		super();
 		this.uid = uid;
 		this.firstName = firstName;
@@ -68,7 +82,17 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.numOfKids = numOfKids;
+		this.city = city;
+		this.age= age;
 		this.usermMem = usermMem;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public void setUid(int uid) {
@@ -130,6 +154,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 
 	@Override
 	public String toString() {

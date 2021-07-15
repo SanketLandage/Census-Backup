@@ -86,10 +86,10 @@ public class UserController {
 	}
 	
 	///Get Family Members using Date of birth
-	@GetMapping("/getMemberByDob/{dob}")
-	public List<UserFamilyMember> getMemberByDob(@PathVariable(value = "dob") String dob) {
+	@GetMapping("/getMemberByAge/{age}")
+	public List<UserFamilyMember> getMemberByDob(@PathVariable(value = "dob") int age) {
 		LOG.info("Getting Family Members By Relation");
-		return service.findByDob(dob);
+		return service.findByAge(age);
 	}
 	
 	
