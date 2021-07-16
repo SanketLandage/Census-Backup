@@ -70,7 +70,11 @@ public class UserService {
 	}
 
 	//Updating info
-
+	public User updateUserProfile(int id , User user) {
+		User us = repository.getById(id);
+		us = user;
+		return repository.save(us);
+	}
 
 
 }

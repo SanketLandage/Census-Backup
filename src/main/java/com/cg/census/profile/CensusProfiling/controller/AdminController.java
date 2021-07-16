@@ -120,10 +120,10 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 		service.deleteUserByfirstName(name);
 	}
 	
-	@ApiOperation(value = "Update Users information" , authorizations = { @Authorization(value = "jwtToken")})
-	@PutMapping("/updateUserInfo/{id}")
-	public User updateMemId(@PathVariable("id") int id , @RequestBody User user) {
-		LOG.info("Update User Info");
-		return service.updateMemberInfo(id, user);
-	}
+//	@ApiOperation(value = "Update Users information" , authorizations = { @Authorization(value = "jwtToken")})
+//	@PutMapping("/updateUserInfo/{id}")
+//	public User updateMemId(@PathVariable("id") int id , @RequestBody User user) {
+//		LOG.info("Update User Info");
+//		return service.updateMemberInfo(id, user);
+//	}
 }

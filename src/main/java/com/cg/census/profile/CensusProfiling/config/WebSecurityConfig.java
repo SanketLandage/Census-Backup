@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/configuration/**", "/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js")
 				.permitAll()
 //		.antMatchers("/").permitAll()
-				.antMatchers("/hello").permitAll().
+				.antMatchers("/register").permitAll().
 
 				antMatchers("/login").permitAll().
 

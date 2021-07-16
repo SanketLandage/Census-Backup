@@ -29,7 +29,7 @@ public class UserController {
 	private UserService service ;
 	
 	////User Registration
-	@ApiOperation(value = "User registration" , authorizations = { @Authorization(value = "jwtToken")})
+	//@ApiOperation(value = "User registration" , authorizations = { @Authorization(value = "jwtToken")})
 	@PostMapping("/register")
 	public User userRegister(@RequestBody User user) {
 		LOG.info("addUser");
@@ -49,7 +49,7 @@ public class UserController {
 	
 	////Delete Family Member by Name
 	@ApiOperation(value = "Delete Family Member using First Name" , authorizations = { @Authorization(value = "jwtToken")})
-	@DeleteMapping("/deleteMemberByName/{name}")
+	@DeleteMapping("/deleteMemberByFirstName/{name}")
 	public void deleteMember(@PathVariable(value = "name") String name) {
 		service.deleteMember(name);
 	}
@@ -97,16 +97,22 @@ public class UserController {
 	
 	///Get Family Members using Date of birth
 	@ApiOperation(value = "Search Family Memeber using Age filter" , authorizations = { @Authorization(value = "jwtToken")})
-	@GetMapping("/getMemberByAge/{age}")
+	@GetMapping("/getMembersByAge/{age}")
 	public List<UserFamilyMember> getMemberByDob(@PathVariable(value = "dob") int age) {
 		LOG.info("Getting Family Members By Relation");
 		return service.findByAge(age);
 	}
 	
 	
-	//// Update User's Family Member
+	@ApiOperation(value = "Update Users information" , authorizations = { @Authorization(value = "jwtToken")})
+	@PutMapping("/updateUserInfo/{id}")
+	public User updateUserProfile(@PathVariable("id") int id , @RequestBody User user) {
+		LOG.info("Update User Info");
+		return service.updateUserProfile(id, user);
+	}
 	
-	@PutMapping("/updateMemInfo/{id}")
+	//// Update User's Family Member
+	@PutMapping("/updateFamilyMemInfo/{id}")
 	@ApiOperation(value = "Update information of Family Member" , authorizations = { @Authorization(value = "jwtToken")})
 	public UserFamilyMember updateMemId(@PathVariable("id") int id , @RequestBody UserFamilyMember memId) {
 		LOG.info("update memId");
