@@ -11,6 +11,7 @@ import com.cg.census.profile.CensusProfiling.exception.DuplicateRecordException;
 import com.cg.census.profile.CensusProfiling.exception.RecordNotFoundException;
 import com.cg.census.profile.CensusProfiling.model.User;
 import com.cg.census.profile.CensusProfiling.model.UserFamilyMember;
+import com.cg.census.profile.CensusProfiling.repository.UserFamilyMemberRepository;
 import com.cg.census.profile.CensusProfiling.repository.UserRepository;
 
 @Service
@@ -18,6 +19,9 @@ public class AdminService {
 	public static final Logger LOG = LoggerFactory.getLogger(UserFamilyMember.class);
 	@Autowired
 	private UserRepository repository;
+	
+	@Autowired
+	private UserFamilyMemberRepository repo;
 
 	public User userRegister(User user) {
 		List<User> optionalUser = repository.findUserByEmail(user.getEmail());
@@ -83,6 +87,17 @@ public class AdminService {
 			return user;
 		}
 	}
+	
+	public List<UserFamilyMember> getAllFamilyMembers(){
+		List<UserFamilyMember> members = repo.findAll();
+		if(members.isEmpty()) {
+			throw new RecordNotFoundException("No user exists in Database");
+		}
+		else {
+			return members;
+		}
+	}
+	
 
 	public void deleteUserById(int id) {
 		User user =repository.findByuid(id);

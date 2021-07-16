@@ -49,7 +49,7 @@ public class User {
 	private int age;
 
 	@JsonManagedReference
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)  //
 	private List<UserFamilyMember> usermMem = new ArrayList<>();
 
 	public User() {
@@ -73,7 +73,7 @@ public class User {
 	}
 
 	public User(int uid, String firstName, String lastName, String gender, String email, String password, int numOfKids,
-			String city,String educationalQualification, int age,List<UserFamilyMember> usermMem) {
+			String city,String educationalQualification, int age, List<UserFamilyMember> usermMem) {
 		super();
 		this.uid = uid;
 		this.firstName = firstName;
@@ -174,9 +174,6 @@ public class User {
 		this.age = age;
 	}
 
-	@Override
-	public String toString() {
-		return "User [uid=" + uid + ", firstName=" + firstName + ", lastName=" + lastName + "]";
-	}
+
 
 }

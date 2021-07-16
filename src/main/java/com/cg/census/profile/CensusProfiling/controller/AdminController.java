@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +18,6 @@ import com.cg.census.profile.CensusProfiling.model.User;
 import com.cg.census.profile.CensusProfiling.model.UserFamilyMember;
 import com.cg.census.profile.CensusProfiling.service.AdminService;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Authorization;
 
@@ -47,6 +45,13 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 	public List<User> getAllUsers() {
 		LOG.info("AllUsers");
 		return service.findAllUsers();
+	}
+	
+	@ApiOperation(value = "Get All Members added by Users" , authorizations = { @Authorization(value = "jwtToken")})
+	@GetMapping("/getAllFamilyMembers")
+	public List<UserFamilyMember> getAllFamilyMembers() {
+		LOG.info("AllUsers");
+		return service.getAllFamilyMembers();
 	}
 	
 	
@@ -94,7 +99,8 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 		LOG.info("getByEmail");
 		return service.getUsersByCity(city);
 	}
-
+	
+	
 	///Admin can get All users by their Gender
 	@ApiOperation(value = "Search Users by Gender filter" , authorizations = { @Authorization(value = "jwtToken")})
 	@GetMapping("/getbyeGender/{gender}")
