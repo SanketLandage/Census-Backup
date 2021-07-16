@@ -51,7 +51,7 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 	
 	
 	///////Get Users by First Name
-	@ApiOperation(value = "Get Users by First Name" , authorizations = { @Authorization(value = "jwtToken")})
+	@ApiOperation(value = "Search Users by First Name" , authorizations = { @Authorization(value = "jwtToken")})
 	@GetMapping("/getbyfirstname/{firstName}")
 	public List<User> getByFirstName(@PathVariable("firstName") String firstName) {
 		LOG.info("getByFirstName");
@@ -59,31 +59,44 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 	}
 	
 	/////Get Users by User ID
-	@ApiOperation(value = "Get Users by ID" , authorizations = { @Authorization(value = "jwtToken")})
+	@ApiOperation(value = "Search User by ID" , authorizations = { @Authorization(value = "jwtToken")})
 	@GetMapping("/getUserById/{id}")
 	public User getUserById(@PathVariable("id") int id) {
 		LOG.info("getByFirstName");
 		return service.getUserById(id);
 	}
 	////Get Users by Last Name
-	@ApiOperation(value = "Get Users by Last Name" , authorizations = { @Authorization(value = "jwtToken")})
-	@GetMapping("/getbylastname/{lastName}")
+	@ApiOperation(value = "Search Users by using Lat Name filter" , authorizations = { @Authorization(value = "jwtToken")})
+	@GetMapping("/getUserByLastName/{lastName}")
 	public List<User> getByLastName(@PathVariable("lastName") String lastName) {
 		LOG.info("getBylastName");
 		return service.findUserByFirstName(lastName);
 	}
 
+	@ApiOperation(value = "Get all Users of given Age" , authorizations = { @Authorization(value = "jwtToken")})
+	@GetMapping("/getUsersByAge/{age}")
+	public List<User> getUsersByAge(@PathVariable("age") int age) {
+		LOG.info("getByFirstName");
+		return service.getUsersByAge(age);
+	}
 	
 	//Get user by Email
-	@ApiOperation(value = "Get Users by Email" , authorizations = { @Authorization(value = "jwtToken")})
-	@GetMapping("/getbyemail/{email}")
+	@ApiOperation(value = "Search Users by Email filter" , authorizations = { @Authorization(value = "jwtToken")})
+	@GetMapping("/getUserByEmail/{email}")
 	public List<User> getByEmail(@PathVariable("email") String email) {
 		LOG.info("getByEmail");
 		return service.findUserByEmail(email);
 	}
+	
+	@ApiOperation(value = "Search Users by City filter" , authorizations = { @Authorization(value = "jwtToken")})
+	@GetMapping("/getUsersByCity/{City}")
+	public List<User> getUserByCity(@PathVariable("City") String city) {
+		LOG.info("getByEmail");
+		return service.getUsersByCity(city);
+	}
 
 	///Admin can get All users by their Gender
-	@ApiOperation(value = "Get Users by Gender" , authorizations = { @Authorization(value = "jwtToken")})
+	@ApiOperation(value = "Search Users by Gender filter" , authorizations = { @Authorization(value = "jwtToken")})
 	@GetMapping("/getbyeGender/{gender}")
 	public List<User> getByGender(@PathVariable("gender") String gender) {
 		LOG.info("getByEmail");
@@ -107,7 +120,7 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 		service.deleteUserByfirstName(name);
 	}
 	
-	@ApiOperation(value = "Update User" , authorizations = { @Authorization(value = "jwtToken")})
+	@ApiOperation(value = "Update Users information" , authorizations = { @Authorization(value = "jwtToken")})
 	@PutMapping("/updateUserInfo/{id}")
 	public User updateMemId(@PathVariable("id") int id , @RequestBody User user) {
 		LOG.info("Update User Info");
