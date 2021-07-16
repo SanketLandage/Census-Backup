@@ -112,8 +112,9 @@ public class UserService {
 
 	public UserFamilyMember updateMemberInfo(int id, UserFamilyMember member) {
 		UserFamilyMember fMem = memRepository.getById(id);
-		fMem = member;
-		return memRepository.save(fMem);
+	//	memRepository.delete(fMem);
+		
+		return memRepository.save(member);
 	}
 
 	// Updating info
