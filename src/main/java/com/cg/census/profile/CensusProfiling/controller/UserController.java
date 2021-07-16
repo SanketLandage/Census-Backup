@@ -98,7 +98,7 @@ public class UserController {
 	///Get Family Members using Date of birth
 	@ApiOperation(value = "Search Family Memeber using Age filter" , authorizations = { @Authorization(value = "jwtToken")})
 	@GetMapping("/getMembersByAge/{age}")
-	public List<UserFamilyMember> getMemberByDob(@PathVariable(value = "dob") int age) {
+	public List<UserFamilyMember> getMemberByAge(@PathVariable(value = "age") int age) {
 		LOG.info("Getting Family Members By Relation");
 		return service.findByAge(age);
 	}
