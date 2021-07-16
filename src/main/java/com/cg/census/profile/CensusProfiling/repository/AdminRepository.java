@@ -7,5 +7,5 @@ import com.cg.census.profile.CensusProfiling.model.Admin;
 
 @Repository
 public interface AdminRepository extends JpaRepository<Admin , Integer>{
-
+	
 }

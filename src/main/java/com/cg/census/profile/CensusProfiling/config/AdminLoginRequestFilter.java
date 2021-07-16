@@ -1,4 +1,5 @@
-package com.cg.census.profile.CensusProfiling.SecureConfig;
+package com.cg.census.profile.CensusProfiling.config;
+
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
@@ -16,17 +17,15 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.cg.census.profile.CensusProfiling.service.AppUserService;
-
-
+import com.cg.census.profile.CensusProfiling.secure.service.AdminLoginService;
 
 @Component
-public class UserRequestFilter extends OncePerRequestFilter {
+public class AdminLoginRequestFilter extends OncePerRequestFilter {
 
-	private final Logger log = LoggerFactory.getLogger(UserRequestFilter.class);
+	private final Logger log = LoggerFactory.getLogger(AdminLoginRequestFilter.class);
 
 	@Autowired
-	private AppUserService appUserService;
+	private AdminLoginService appUserService;
 
 	@Autowired
 	private JwtUtil jwtUtil;

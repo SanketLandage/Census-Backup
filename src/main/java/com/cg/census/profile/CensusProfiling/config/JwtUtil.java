@@ -1,4 +1,4 @@
-package com.cg.census.profile.CensusProfiling.SecureConfig;
+package com.cg.census.profile.CensusProfiling.config;
 
 import java.util.Date;
 import java.util.HashMap;
