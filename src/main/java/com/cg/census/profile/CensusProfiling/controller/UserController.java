@@ -77,6 +77,17 @@ public class UserController {
 		
 	}
 	
+	//GetFamilyMembers
+	@GetMapping("/getFamilyMembers/{user_uid}")
+	public List<UserFamilyMember> getFamilyMembers(@PathVariable(value = "user_uid") int user_uid) {
+		LOG.info("Get All Family Members");		
+		if (appUserService.loginStatus().getRole().toString().equals("USER")) {
+			return service.findFamilyMembers(user_uid);
+		}
+		else {
+			throw new NoAccessException("You dont have access");
+		}
+	}
 	
 	////Get Member by First Name
 	@GetMapping("/getMemberByFirstName/{fname}")
@@ -156,5 +167,7 @@ public class UserController {
 			throw new NoAccessException("You dont have access");
 		}
 	}
+	
+	
 
 }

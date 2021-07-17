@@ -59,6 +59,15 @@ public class UserService {
 		}
 
 	}
+	
+	public List<UserFamilyMember> findFamilyMembers(int user_uid) {
+		List<UserFamilyMember> famMem = memRepository.findByUser_uid(user_uid);
+		if(famMem.isEmpty()) {
+			throw new RecordNotFoundException("No Record found");
+		} else {
+			return famMem;
+		}
+	}
 
 	public List<UserFamilyMember> findMemberByFirstName(String firstName) {
 
