@@ -133,6 +133,17 @@ public class UserController {
 		}
 	}
 	
+	//get family members of particular User
+	@GetMapping("/getAllMembers/{user_uid}")
+	public List<UserFamilyMember> getFamilyMembers(@PathVariable(value = "user_uid") int user_uid) {
+		LOG.info("Get All Family Members of a particular User ");		
+		if (appUserService.loginStatus().getRole().toString().equals("USER")) {
+			return service.findFamilyMembers(user_uid);
+		}
+		else {
+			throw new NoAccessException("You dont have access");
+		}
+	}
 	
 	@PutMapping("/updateInfo")
 	public User updateUserProfile( @RequestBody User user) {

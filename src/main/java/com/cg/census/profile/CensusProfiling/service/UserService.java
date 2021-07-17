@@ -114,6 +114,15 @@ public class UserService {
 	
 		return memRepository.save(member);
 	}
+	
+	public List<UserFamilyMember> findFamilyMembers(int user_uid) {
+		List<UserFamilyMember> famMem = memRepository.findByUser_uid(user_uid);
+		if(famMem.isEmpty()) {
+			throw new RecordNotFoundException("No Record found");
+		} else {
+			return famMem;
+		}
+	}
 
 	// Updating info
 	public User updateUserProfile(User user) {
