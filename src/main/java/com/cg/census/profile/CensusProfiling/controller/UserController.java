@@ -134,11 +134,11 @@ public class UserController {
 	}
 	
 	
-	@PutMapping("/updateUserInfo/{id}")
-	public User updateUserProfile(@PathVariable("id") int id , @RequestBody User user) {
+	@PutMapping("/updateInfo")
+	public User updateUserProfile( @RequestBody User user) {
 		LOG.info("Update User Info");
 		if (appUserService.loginStatus().getRole().toString().equals("USER")) { 
-		return service.updateUserProfile(id, user);
+		return service.updateUserProfile(user);
 		}
 		else {
 			throw new NoAccessException("You dont have access");
@@ -146,11 +146,11 @@ public class UserController {
 	}
 	
 	//// Update User's Family Member
-	@PutMapping("/updateFamilyMemInfo/{id}")
-	public UserFamilyMember updateMemId(@PathVariable("id") int id , @RequestBody UserFamilyMember memId) {
+	@PutMapping("/updateFamilyMemInfo")
+	public UserFamilyMember updateMemId( @RequestBody UserFamilyMember memId) {
 		LOG.info("update memId");
 		if (appUserService.loginStatus().getRole().toString().equals("USER")) {
-		return service.updateMemberInfo(id, memId);
+		return service.updateMemberInfo( memId);
 		}
 		else {
 			throw new NoAccessException("You dont have access");

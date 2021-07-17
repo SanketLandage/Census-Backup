@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -98,7 +99,7 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 	public List<User> getByLastName(@PathVariable("lastName") String lastName) {
 		LOG.info("getBylastName");
 		if (appUserService.loginStatus().getRole().toString().equals("ADMIN")) {
-		return service.findUserByFirstName(lastName);
+		return service.findUserByLastName(lastName);
 		}
 		else {
 			throw new NoAccessException("You dont have access");
@@ -118,10 +119,10 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 	
 	//Get user by Email
 	@GetMapping("/getUserByEmail/{email}")
-	public List<User> getByEmail(@PathVariable("email") String email) {
+	public User getByEmail(@PathVariable("email") String email) {
 		LOG.info("getByEmail");
 		if (appUserService.loginStatus().getRole().toString().equals("ADMIN")) {
-		return service.findUserByEmail(email);
+			return service.findUserByEmail(email);
 		}
 		else {
 			throw new NoAccessException("You dont have access");
@@ -164,11 +165,11 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 	}
 	
 	@Transactional
-	@DeleteMapping("/deleteUserByFirstName/{name}")
-	public void deleteUserById(@PathVariable("name") String name) {
+	@DeleteMapping("/deleteUserByEmail/{email}")
+	public void deleteUserById(@PathVariable("email") String email) {
 		LOG.info("Delte User by First Name");
 		if (appUserService.loginStatus().getRole().toString().equals("ADMIN")) {
-			service.deleteUserByfirstName(name);
+			service.deleteUserByEmail(email);
 		}
 	}
 	
@@ -178,4 +179,5 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 //		LOG.info("Update User Info");
 //		return service.updateMemberInfo(id, user);
 //	}
+	
 }

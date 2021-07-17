@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	public abstract List<User> findUserByGender(String gender);
 
-	public abstract List<User> findUserByEmail(String email);
+	public abstract User findUserByEmail(String email);
 
 	public abstract List<User> findUserBycity(String city);
 
@@ -28,5 +28,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	public abstract List<User> findUserByage(int age);
 
-	public abstract Object deleteUserByfirstName(String firstName);
+	public abstract Object deleteUserByemail(String email);
 }

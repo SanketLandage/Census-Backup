@@ -1,6 +1,5 @@
 package com.cg.census.profile.CensusProfiling.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,7 +37,7 @@ public class UserFamilyMember {
 	private String education;
 
 	@JsonBackReference
-	@ManyToOne							//(cascade = CascadeType.REFRESH)
+	@ManyToOne						
 	private User user;
 
 	public UserFamilyMember() {

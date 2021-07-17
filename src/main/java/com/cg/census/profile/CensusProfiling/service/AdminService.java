@@ -24,8 +24,8 @@ public class AdminService {
 	private UserFamilyMemberRepository repo;
 
 	public User userRegister(User user) {
-		List<User> optionalUser = repository.findUserByEmail(user.getEmail());
-		if (optionalUser.isEmpty()) {
+		User optionalUser = repository.findUserByEmail(user.getEmail());
+		if (optionalUser == null) {
 			return repository.save(user);
 		} else {
 			throw new DuplicateRecordException("User Already exists");
@@ -67,10 +67,10 @@ public class AdminService {
 
 	}
 
-	public List<User> findUserByEmail(String email) {
+	public User findUserByEmail(String email) {
 		LOG.info("findUserByEmail");
-		List<User> user = repository.findUserByEmail(email);
-		if(user.isEmpty()) {
+		User user = repository.findUserByEmail(email);
+		if(user == null ) {
 			throw new RecordNotFoundException("User With given Email does not Exists!");
 		}
 		else {
@@ -109,13 +109,13 @@ public class AdminService {
 		}
 	}
 
-	public void deleteUserByfirstName(String name) {
-		List<User> user =repository.findByfirstName(name);
-		if(user.isEmpty()) {
+	public void deleteUserByEmail(String email) {
+		User user =repository.findUserByEmail(email);
+		if(user == null) {
 			throw new RecordNotFoundException("User you are trying to delete does not exists");
 		}
 		else{
-			repository.deleteUserByfirstName(name);
+			repository.deleteUserByemail(email);
 		}
 	}
 

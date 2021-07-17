@@ -22,8 +22,8 @@ public class UserService {
 	private UserRepository repository;
 
 	public User userRegister(User user) {
-		List<User> optionalUser = repository.findUserByEmail(user.getEmail());
-		if (optionalUser.isEmpty()) {
+		User optionalUser = repository.findUserByEmail(user.getEmail());
+		if (optionalUser == null) {
 			return repository.save(user);
 		} else {
 			throw new DuplicateRecordException("User Already exists");
@@ -110,23 +110,20 @@ public class UserService {
 
 	}
 
-	public UserFamilyMember updateMemberInfo(int id, UserFamilyMember member) {
-		UserFamilyMember fMem = memRepository.getById(id);
-	//	memRepository.delete(fMem);
-		
+	public UserFamilyMember updateMemberInfo(UserFamilyMember member) {
+	
 		return memRepository.save(member);
 	}
 
 	// Updating info
-	public User updateUserProfile(int id, User user) {
-		User us = repository.getById(id);
-//		us = user;
-		if (us == null) {
+	public User updateUserProfile(User user) {
+	
+		if (user == null) {
 			throw new RecordNotFoundException("Record to be updated Not Found");
 		} 
 		else {
-			us=user;
-			return repository.save(us);
+			
+			return repository.save(user);
 		}
 	}
 
