@@ -173,6 +173,17 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 		}
 	}
 	
+	//To get  the users between age group 10 - 20 years
+	@GetMapping("getTargetedUsers")
+	public List<User> getTargetedUser(){
+		LOG.info("Targeted Age Gorup");
+		if (appUserService.loginStatus().getRole().toString().equals("ADMIN")) {
+			return service.findTargetedUsers();
+		}else {
+			throw new NoAccessException("You dont have access");
+		}
+	}
+	
 //	@ApiOperation(value = "Update Users information" , authorizations = { @Authorization(value = "jwtToken")})
 //	@PutMapping("/updateUserInfo/{id}")
 //	public User updateMemId(@PathVariable("id") int id , @RequestBody User user) {

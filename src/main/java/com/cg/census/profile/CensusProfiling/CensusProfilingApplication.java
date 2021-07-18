@@ -10,7 +10,5 @@ public class CensusProfilingApplication {
 		System.out.println("Start");
 		SpringApplication.run(CensusProfilingApplication.class, args);
 		System.out.println("end");
-	}
-
-	
+	}	
 }
