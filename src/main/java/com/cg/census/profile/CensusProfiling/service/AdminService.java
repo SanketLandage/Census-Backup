@@ -67,6 +67,26 @@ public class AdminService {
 
 	}
 
+	public List<User> findTargetedUsers(){
+		List<User> user = repository.findTargetUsers();
+		if(user.isEmpty()) {
+			throw new RecordNotFoundException("No User avialable");	
+		}
+		else {
+			return user;
+		}
+	}
+	
+	public List<UserFamilyMember> findTargetedMembers(){
+		List<UserFamilyMember> user = repo.findTargetMembers();
+		if(user.isEmpty()) {
+			throw new RecordNotFoundException("No User avialable");	
+		}
+		else {
+			return user;
+		}
+	}
+	
 	public User findUserByEmail(String email) {
 		LOG.info("findUserByEmail");
 		User user = repository.findUserByEmail(email);

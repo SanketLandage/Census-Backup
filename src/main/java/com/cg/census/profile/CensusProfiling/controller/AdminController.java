@@ -153,6 +153,26 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 		}
 	}
 	
+	@GetMapping("/getTargetedUsers")
+	public List<User> getTargetedUser(){
+		LOG.info("Targeted Age Gorup");
+		if (appUserService.loginStatus().getRole().toString().equals("ADMIN")) {
+			return service.findTargetedUsers();
+		}else {
+			throw new NoAccessException("You dont have access");
+		}
+	}
+	
+	@GetMapping("/getTargetedUsers")
+	public List<UserFamilyMember> getTargetedMembers(){
+		LOG.info("Targeted Age Gorup");
+		if (appUserService.loginStatus().getRole().toString().equals("ADMIN")) {
+			return service.findTargetedMembers();
+		}else {
+			throw new NoAccessException("You dont have access");
+		}
+	}
+	
 	////Admin Can Delete User by ID
 	
 	@Transactional

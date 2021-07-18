@@ -3,6 +3,7 @@ package com.cg.census.profile.CensusProfiling.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.cg.census.profile.CensusProfiling.model.User;
@@ -29,4 +30,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	public abstract List<User> findUserByage(int age);
 
 	public abstract Object deleteUserByemail(String email);
+	
+	@Query("select u from Users u where u.age between 10 and 20")
+	public abstract List<User> findTargetUsers();
+	
 }
