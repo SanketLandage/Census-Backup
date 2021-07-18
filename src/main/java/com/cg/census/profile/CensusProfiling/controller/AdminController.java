@@ -154,7 +154,7 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 	}
 	
 	@GetMapping("/getTargetedUsers")
-	public List<User> getTargetedUser(){
+	public List<User> getTargetedUsers(){
 		LOG.info("Targeted Age Gorup");
 		if (appUserService.loginStatus().getRole().toString().equals("ADMIN")) {
 			return service.findTargetedUsers();
@@ -163,7 +163,7 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 		}
 	}
 	
-	@GetMapping("/getTargetedUsers")
+	@GetMapping("/getTargetedMembers")
 	public List<UserFamilyMember> getTargetedMembers(){
 		LOG.info("Targeted Age Gorup");
 		if (appUserService.loginStatus().getRole().toString().equals("ADMIN")) {
