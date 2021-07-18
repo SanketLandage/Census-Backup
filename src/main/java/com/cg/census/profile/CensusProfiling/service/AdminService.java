@@ -154,4 +154,14 @@ public class AdminService {
 			return user;
 		}
 	}
+	
+	public List<User> findTargetedUsers(){
+		List<User> user = repository.findTargetUsers();
+		if(user.isEmpty()) {
+			throw new RecordNotFoundException("No User avialable");	
+		}
+		else {
+			return user;
+		}
+	}
 }
