@@ -20,9 +20,8 @@ public class UserService {
 	public static final Logger LOG = LoggerFactory.getLogger(UserFamilyMember.class);
 	@Autowired
 	private UserRepository userRepository;
-	
-	
-	///User Register 
+
+	/// User Register
 	public User userRegister(User user) {
 		User optionalUser = userRepository.findUserByEmail(user.getEmail());
 		if (optionalUser == null) {
@@ -38,7 +37,7 @@ public class UserService {
 	private UserFamilyMemberRepository memRepository;
 
 	public UserFamilyMember addMember(UserFamilyMember member) {
-			return memRepository.save(member);
+		return memRepository.save(member);
 	}
 
 	@Transactional
@@ -71,10 +70,8 @@ public class UserService {
 		}
 	}
 
-	
-
 	public UserFamilyMember findMemberById(int id) {
-		UserFamilyMember famMem = memRepository.findBymemId( id);
+		UserFamilyMember famMem = memRepository.findBymemId(id);
 		if (famMem == null) {
 			throw new RecordNotFoundException("Record with passed ID does not exists in Database");
 		} else {
@@ -82,51 +79,28 @@ public class UserService {
 		}
 	}
 
-//	public List<UserFamilyMember> findByRelation(String relation) {
-//		List<UserFamilyMember> famMem = memRepository.findByrelationWithUser(relation);
-//		if (famMem.isEmpty()) {
-//			throw new RecordNotFoundException("Record with given Last Name Not Found");
-//		} else {
-//			return famMem;
-//		}
-//	}
-	
-	//Get Family Member By Age
-//	public List<UserFamilyMember> findMembersByAge(int age , int uid) {
-//		List<UserFamilyMember> famMem = memRepository.findByageOfMember(age);
-//		if (famMem.isEmpty()) {
-//			throw new RecordNotFoundException("");
-//		} else {
-//			return famMem;
-//		}
-//	}
-	
 	// Update Family Member Details
 	public UserFamilyMember updateMemberInfo(UserFamilyMember member) {
 		return memRepository.save(member);
 	}
-	
-	
-	//Get All family Members of Single User
+
+	// Get All family Members of Single User
 	public List<UserFamilyMember> findFamilyMembersByUserId(int user_uid) {
 		List<UserFamilyMember> famMem = memRepository.findByUser_uid(user_uid);
-		if(famMem.isEmpty()) {
+		if (famMem.isEmpty()) {
 			throw new RecordNotFoundException("No Record found");
 		} else {
 			return famMem;
 		}
 	}
-	
-	
 
 	// Update User Profile
 	public User updateUserProfile(User user) {
-	
+
 		if (user == null) {
 			throw new RecordNotFoundException("Record to be updated Not Found");
-		} 
-		else {
-			
+		} else {
+
 			return userRepository.save(user);
 		}
 	}

@@ -32,7 +32,7 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 	
 	@Autowired
 	private AdminService service ;
-	
+												
 	@Autowired
 	AppUserService appUserService;
 	
@@ -173,7 +173,6 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 	}
 	
 	////Admin Can Delete User by ID
-	
 	@Transactional
 	@DeleteMapping("/deleteUserById/{id}")
 	public void deleteUsersById(@PathVariable("id") int id) {

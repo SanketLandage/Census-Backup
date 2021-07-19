@@ -19,13 +19,13 @@ public class AppUserService {
 
 	private AppUser currentAppUser; // access control to APIs
 
-	public AppUser login(AppUser appUser) {
+	public AppUser login(AppUser appUser) { 			///usermem , pass
 		log.info("loginService");
-		currentAppUser = repository.findByUsername(appUser.getUsername());
-		return currentAppUser;
+		currentAppUser = repository.findByUsername(appUser.getUsername()); 
+		return currentAppUser; 
 	}
 
-	public AppUser register(AppUser appUser) {
+	public AppUser register(AppUser appUser) {   ///// username= "abc" ,pasword="abc" , role="ADMIN"
 		log.info("registerService");
 		return repository.save(appUser);
 	}

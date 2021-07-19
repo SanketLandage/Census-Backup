@@ -18,7 +18,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity(name = "Users")
 @Table(name = "Users")
 public class User {
-	@Id
+	
+	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int uid;
 	
@@ -50,7 +51,7 @@ public class User {
 	private int age;
 
 	@JsonManagedReference
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)  //
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)  
 	private List<UserFamilyMember> usermMem = new ArrayList<>();
 
 	public User() {
@@ -62,12 +63,6 @@ public class User {
 		this.uid = uid;
 	}
 
-//	public User(int uid, String firstName, String lastName) {
-//		super();
-//		this.uid = uid;
-//		this.firstName = firstName;
-//		this.lastName = lastName;
-//	}
 
 	public int getUid() {
 		return uid;

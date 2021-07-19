@@ -39,8 +39,7 @@ public class UserController {
 			return service.userRegister(user);
 	}
 	
-//	@Autowired
-//	private UserFamilyMemberService service;
+
 
 	////Add New Family Member
 	@PostMapping("/addmember")
@@ -77,19 +76,7 @@ public class UserController {
 		
 	}
 	
-	
-	////Get Member by First Name
-//	@GetMapping("/getMemberByFirstName/{fname}")
-//	public List<UserFamilyMember> getMemberBYFirstName(@PathVariable(value = "fname") String fname) {
-//		LOG.info("Get Member by First Name");
-//		if (appUserService.loginStatus().getRole().toString().equals("USER")) {
-//			return service.findMemberByFirstName(fname);
-//		}
-//		else {
-//			throw new NoAccessException("You dont have access");
-//		}
-//	}
-	
+
 	
 	///Get Member by Id
 	@GetMapping("/getMemberById/{mid}")
@@ -103,29 +90,7 @@ public class UserController {
 		}
 	}
 
-	////Get Member By Relation
-//	@GetMapping("/getMemberByRelation/{relation}")
-//	public List<UserFamilyMember> getMemberByRelation(@PathVariable(value = "relation") String relation) {
-//		LOG.info("Getting Family Members By Relation");
-//		if (appUserService.loginStatus().getRole().toString().equals("USER")) {
-//		return service.findByRelation(relation);
-//		}
-//		else {
-//			throw new NoAccessException("You dont have access");
-//		}
-//	}
-	
-	///Get Family Members using Age
-//	@GetMapping("/getAllMembersByAge/{age}")
-//	public List<UserFamilyMember> getMemberByAge(@PathVariable(value = "age") int age) {
-//		LOG.info("Getting Family Members By Relation");
-//		if (appUserService.loginStatus().getRole().toString().equals("ADMIN")) {
-//			return service.findByAge(age);
-//		}
-//		else {
-//			throw new NoAccessException("You dont have access");
-//		}
-//	}
+
 	
 	//get family members of particular User
 	@GetMapping("/getAllMembers/{user_uid}")

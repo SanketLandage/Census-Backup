@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.census.profile.CensusProfiling.model.AppUser;
 import com.cg.census.profile.CensusProfiling.secure.service.AppUserService;
 
-
-
 @RestController
 public class AppUserController {
 
@@ -27,20 +25,12 @@ public class AppUserController {
 		return userService.register(appUser);
 	}
 
-//	@PostMapping("/login2")
-//	public AppUser login2(@RequestBody AppUser appUser) {
-//		log.info("loginController");
-//		log.info(appUser.getUsername());
-//		log.info(appUser.getPassword());
-//		return userService.login(appUser);
-//	}
-
 	@PostMapping("/login")
 	public AppUser login(@RequestBody AppUser appUser) {
 		log.info("loginController");
 		log.info(appUser.getUsername());
 		log.info(appUser.getPassword());
-		
+
 		AppUser appUser2 = userService.login(appUser);
 		if ((appUser.getUsername().equals(appUser2.getUsername())
 				&& (appUser.getPassword().equals(appUser2.getPassword())))) {

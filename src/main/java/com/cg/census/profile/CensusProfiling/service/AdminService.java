@@ -17,6 +17,7 @@ import com.cg.census.profile.CensusProfiling.repository.UserRepository;
 @Service
 public class AdminService {
 	public static final Logger LOG = LoggerFactory.getLogger(UserFamilyMember.class);
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -141,13 +142,6 @@ public class AdminService {
 			userRepository.deleteUserByemail(email);
 		}
 	}
-
-//	///Update Member 
-//	public User updateMemberInfo(int id, User user) {
-//		User fMem = userRepository.getById(id);
-//		fMem = user;
-//		return userRepository.save(fMem);
-//	}
 
 	// Get User by ID
 	public User getUserById(int id) {
