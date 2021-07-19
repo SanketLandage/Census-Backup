@@ -16,7 +16,7 @@ import com.cg.census.profile.CensusProfiling.model.User;
 import com.cg.census.profile.CensusProfiling.repository.UserRepository;
 
 @SpringBootTest
-public class AdminController {
+public class AdminControllerTest {
 	
 	@InjectMocks
 	private AdminService adminService;

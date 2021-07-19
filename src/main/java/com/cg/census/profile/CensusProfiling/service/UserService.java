@@ -38,8 +38,7 @@ public class UserService {
 	private UserFamilyMemberRepository memRepository;
 
 	public UserFamilyMember addMember(UserFamilyMember member) {
-		// UserFamilyMember famMem = memRepository.
-		return memRepository.save(member);
+			return memRepository.save(member);
 	}
 
 	@Transactional
@@ -66,7 +65,7 @@ public class UserService {
 
 		List<UserFamilyMember> famMem = memRepository.findBymemFirstName(firstName);
 		if (famMem.isEmpty()) {
-			throw new RecordNotFoundException("Record with given Name Not Found");
+			throw new RecordNotFoundException("Record with given Name Does Not Exists");
 		} else {
 			return famMem;
 		}
@@ -77,7 +76,7 @@ public class UserService {
 	public UserFamilyMember findMemberById(int id) {
 		UserFamilyMember famMem = memRepository.findBymemId( id);
 		if (famMem == null) {
-			throw new RecordNotFoundException("Record with given Last Name Not Found");
+			throw new RecordNotFoundException("Record with passed ID does not exists in Database");
 		} else {
 			return famMem;
 		}

@@ -153,7 +153,7 @@ public class UserController {
 	//// Update User's Family Member
 	@PutMapping("/updateFamilyMemInfo")
 	public UserFamilyMember updateMemId( @RequestBody UserFamilyMember memId) {
-		LOG.info("update memId");
+		LOG.info("Update Member Details");
 		if (appUserService.loginStatus().getRole().toString().equals("USER")) {
 		return service.updateMemberInfo( memId);
 		}
