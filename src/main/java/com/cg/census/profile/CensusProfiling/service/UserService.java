@@ -19,12 +19,14 @@ import com.cg.census.profile.CensusProfiling.repository.UserRepository;
 public class UserService {
 	public static final Logger LOG = LoggerFactory.getLogger(UserFamilyMember.class);
 	@Autowired
-	private UserRepository repository;
-
+	private UserRepository userRepository;
+	
+	
+	///User Register 
 	public User userRegister(User user) {
-		User optionalUser = repository.findUserByEmail(user.getEmail());
+		User optionalUser = userRepository.findUserByEmail(user.getEmail());
 		if (optionalUser == null) {
-			return repository.save(user);
+			return userRepository.save(user);
 		} else {
 			throw new DuplicateRecordException("User Already exists");
 		}
@@ -70,52 +72,44 @@ public class UserService {
 		}
 	}
 
-	public List<UserFamilyMember> findMemberByLastName(String lastName) {
-
-		List<UserFamilyMember> famMem = memRepository.findBymemLastName(lastName);
-		if (famMem.isEmpty()) {
-			throw new RecordNotFoundException("Record with given Last Name Not Found");
-		} else {
-			return famMem;
-		}
-
-	}
-
-	public List<UserFamilyMember> findMemberById(int mId) {
-
-		List<UserFamilyMember> famMem = memRepository.findBymemId(mId);
-		if (famMem.isEmpty()) {
-			throw new RecordNotFoundException("Record with given Last Name Not Found");
-		} else {
-			return famMem;
-		}
-	}
-
-	public List<UserFamilyMember> findByRelation(String relation) {
-		List<UserFamilyMember> famMem = memRepository.findByrelationWithMember(relation);
-		if (famMem.isEmpty()) {
-			throw new RecordNotFoundException("Record with given Last Name Not Found");
-		} else {
-			return famMem;
-		}
-	}
-
-	public List<UserFamilyMember> findByAge(int age) {
-		List<UserFamilyMember> famMem = memRepository.findByageOfMember(age);
-		if (famMem.isEmpty()) {
-			throw new RecordNotFoundException("Record with given Last Name Not Found");
-		} else {
-			return famMem;
-		}
-
-	}
-
-	public UserFamilyMember updateMemberInfo(UserFamilyMember member) {
 	
+
+	public UserFamilyMember findMemberById(int id) {
+		UserFamilyMember famMem = memRepository.findBymemId( id);
+		if (famMem == null) {
+			throw new RecordNotFoundException("Record with given Last Name Not Found");
+		} else {
+			return famMem;
+		}
+	}
+
+//	public List<UserFamilyMember> findByRelation(String relation) {
+//		List<UserFamilyMember> famMem = memRepository.findByrelationWithUser(relation);
+//		if (famMem.isEmpty()) {
+//			throw new RecordNotFoundException("Record with given Last Name Not Found");
+//		} else {
+//			return famMem;
+//		}
+//	}
+	
+	//Get Family Member By Age
+//	public List<UserFamilyMember> findMembersByAge(int age , int uid) {
+//		List<UserFamilyMember> famMem = memRepository.findByageOfMember(age);
+//		if (famMem.isEmpty()) {
+//			throw new RecordNotFoundException("");
+//		} else {
+//			return famMem;
+//		}
+//	}
+	
+	// Update Family Member Details
+	public UserFamilyMember updateMemberInfo(UserFamilyMember member) {
 		return memRepository.save(member);
 	}
 	
-	public List<UserFamilyMember> findFamilyMembers(int user_uid) {
+	
+	//Get All family Members of Single User
+	public List<UserFamilyMember> findFamilyMembersByUserId(int user_uid) {
 		List<UserFamilyMember> famMem = memRepository.findByUser_uid(user_uid);
 		if(famMem.isEmpty()) {
 			throw new RecordNotFoundException("No Record found");
@@ -126,7 +120,7 @@ public class UserService {
 	
 	
 
-	// Updating info
+	// Update User Profile
 	public User updateUserProfile(User user) {
 	
 		if (user == null) {
@@ -134,7 +128,7 @@ public class UserService {
 		} 
 		else {
 			
-			return repository.save(user);
+			return userRepository.save(user);
 		}
 	}
 

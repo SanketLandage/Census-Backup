@@ -30,7 +30,7 @@ public class AdminController {
 		
 	User user = new User(101,"aditya","kamath","male", "aditya123@gmail.com", "gys", 2, "pune", "graduate", 12, null);
 	Mockito.when(userRepository.save(user)).thenReturn(user);	
-	User userActual1 = adminService.userRegister(user);		
+	User userActual1 = adminService.addUser(user);		
 		assertEquals( user.getUid(), userActual1.getUid());
 	}
 	
@@ -40,7 +40,7 @@ public class AdminController {
 		
 		User user = new User(101,"aditya","kamath","male", "aditya123@gmail.com", "gys", 2, "pune", "graduate", 12, null);
 		Mockito.when(userRepository.save(user)).thenReturn(user);
-		User userActual1 = adminService.userRegister(user);
+		User userActual1 = adminService.addUser(user);
 		assertEquals( user.getUid(), userActual1.getUid());
 	}
 	
@@ -49,7 +49,7 @@ public class AdminController {
 	public void findByFirstName() {
 		User user = new User(101,"aditya","kamath","male", "aditya123@gmail.com", "gys", 2, "pune", "graduate", 12, null);	
 		Mockito.when(userRepository.save(user)).thenReturn(user);	
-		User userActual1 = adminService.userRegister(user);	
+		User userActual1 = adminService.addUser(user);	
 		assertEquals( user.getFirstName(), userActual1.getFirstName());
 	}
 	
@@ -59,7 +59,7 @@ public class AdminController {
 		
 		User user = new User(101,"aditya","kamath","male", "aditya123@gmail.com", "gys", 2, "pune", "graduate", 12, null);
 		Mockito.when(userRepository.save(user)).thenReturn(user);
-		User userActual1 = adminService.userRegister(user);
+		User userActual1 = adminService.addUser(user);
 		assertEquals( user.getLastName(), userActual1.getLastName());
 	}
 	
@@ -69,7 +69,7 @@ public class AdminController {
 		
 		User user = new User(101,"aditya","kamath","male", "aditya123@gmail.com", "gys", 2, "pune", "graduate", 12, null);
 		Mockito.when(userRepository.save(user)).thenReturn(user);
-		User userActual1 = adminService.userRegister(user);
+		User userActual1 = adminService.addUser(user);
 		assertEquals( user.getAge(), userActual1.getAge());
 	}
 	
@@ -79,7 +79,7 @@ public class AdminController {
 		
 		User user = new User(101,"aditya","kamath","male", "aditya123@gmail.com", "gys", 2, "pune", "graduate", 12, null);
 		Mockito.when(userRepository.save(user)).thenReturn(user);
-		User userActual1 = adminService.userRegister(user);
+		User userActual1 = adminService.addUser(user);
 		assertEquals( user.getEmail(), userActual1.getEmail());
 	}
 	
@@ -89,7 +89,7 @@ public class AdminController {
 		
 		User user = new User(101,"aditya","kamath","male", "aditya123@gmail.com", "gys", 2, "pune", "graduate", 12, null);
 		Mockito.when(userRepository.save(user)).thenReturn(user);
-		User userActual1 = adminService.userRegister(user);
+		User userActual1 = adminService.addUser(user);
 		assertEquals( user.getCity(), userActual1.getCity());
 	}
 	
@@ -99,7 +99,7 @@ public class AdminController {
 		
 		User user = new User(101,"aditya","kamath","male", "aditya123@gmail.com", "gys", 2, "pune", "graduate", 12, null);	
 		Mockito.when(userRepository.save(user)).thenReturn(user);
-		User userActual1 = adminService.userRegister(user);
+		User userActual1 = adminService.addUser(user);
 		assertEquals( user.getGender(), userActual1.getGender());
 	}
 	

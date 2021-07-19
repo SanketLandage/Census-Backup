@@ -18,24 +18,26 @@ import com.cg.census.profile.CensusProfiling.repository.UserRepository;
 public class AdminService {
 	public static final Logger LOG = LoggerFactory.getLogger(UserFamilyMember.class);
 	@Autowired
-	private UserRepository repository;
-	
-	@Autowired
-	private UserFamilyMemberRepository repo;
+	private UserRepository userRepository;
 
-	public User userRegister(User user) {
-		User optionalUser = repository.findUserByEmail(user.getEmail());
+	@Autowired
+	private UserFamilyMemberRepository userFamilyMemberRepository;
+
+	/// Add User
+	public User addUser(User user) {
+		User optionalUser = userRepository.findUserByEmail(user.getEmail());
 		if (optionalUser == null) {
-			return repository.save(user);
+			return userRepository.save(user);
 		} else {
 			throw new DuplicateRecordException("User Already exists");
 		}
 	}
 
-	public List<User> findUserByFirstName(String firstName) {
+	/// Find by First Name
+	public List<User> findUsersByFirstName(String firstName) {
 		LOG.info("findUserByFirstName");
 
-		List<User> user = repository.findUserByFirstName(firstName);
+		List<User> user = userRepository.findUserByFirstName(firstName);
 		if (user.isEmpty()) {
 			throw new RecordNotFoundException("Record with given first name Not Found");
 		} else {
@@ -44,10 +46,11 @@ public class AdminService {
 
 	}
 
-	public List<User> findUserByLastName(String lastName) {
+	/// Find by Last Name
+	public List<User> findUsersByLastName(String lastName) {
 
 		LOG.info("findUserByLastName");
-		List<User> user = repository.findUserByLastName(lastName);
+		List<User> user = userRepository.findUserByLastName(lastName);
 		if (user.isEmpty()) {
 			throw new RecordNotFoundException("Record Not Found of given last name");
 		} else {
@@ -56,9 +59,10 @@ public class AdminService {
 
 	}
 
-	public List<User> findUserByGender(String gender) {
+	/// Get Users By Gender
+	public List<User> findUsersByGender(String gender) {
 		LOG.info("findUserByGender");
-		List<User> user = repository.findUserByGender(gender);
+		List<User> user = userRepository.findUserByGender(gender);
 		if (user.isEmpty()) {
 			throw new RecordNotFoundException("Record does not exists of given gender type");
 		} else {
@@ -67,110 +71,110 @@ public class AdminService {
 
 	}
 
-	public List<User> findTargetedUsers(){
-		List<User> user = repository.findTargetUsers();
-		if(user.isEmpty()) {
-			throw new RecordNotFoundException("No User avialable");	
-		}
-		else {
-			return user;
-		}
-	}
-	
-	public List<UserFamilyMember> findTargetedMembers(){
-		List<UserFamilyMember> user = repo.findTargetMembers();
-		if(user.isEmpty()) {
-			throw new RecordNotFoundException("No User avialable");	
-		}
-		else {
-			return user;
-		}
-	}
-	
-	public User findUserByEmail(String email) {
-		LOG.info("findUserByEmail");
-		User user = repository.findUserByEmail(email);
-		if(user == null ) {
-			throw new RecordNotFoundException("User With given Email does not Exists!");
-		}
-		else {
+	/// Get users of Age 10 - Age 20
+	public List<User> findUsersByAgeGroup() {
+		List<User> user = userRepository.findTargetUsers();
+		if (user.isEmpty()) {
+			throw new RecordNotFoundException("No Users Available of this age group");
+		} else {
 			return user;
 		}
 	}
 
-	public List<User> findAllUsers() {
-		List<User> user = repository.findAll();
-		if(user.isEmpty()) {
-			throw new RecordNotFoundException("No user exists in Database");
-		}
-		else {
+	/// Get members of Age 10 - Age 20
+	public List<UserFamilyMember> findMembersByAgeGroup() {
+		List<UserFamilyMember> user = userFamilyMemberRepository.findTargetMembers();
+		if (user.isEmpty()) {
+			throw new RecordNotFoundException("No Users Available of this age group");
+		} else {
 			return user;
 		}
 	}
-	
-	public List<UserFamilyMember> getAllFamilyMembers(){
-		List<UserFamilyMember> members = repo.findAll();
-		if(members.isEmpty()) {
-			throw new RecordNotFoundException("No user exists in Database");
+
+	/// Find User by Email
+	public User findUserByEmail(String email) {
+		LOG.info("findUserByEmail");
+		User user = userRepository.findUserByEmail(email);
+		if (user == null) {
+			throw new RecordNotFoundException("User With given Email does not Exist");
+		} else {
+			return user;
 		}
-		else {
+	}
+
+	/// Get All Users
+	public List<User> findAllUsers() {
+		List<User> user = userRepository.findAll();
+		if (user.isEmpty()) {
+			throw new RecordNotFoundException("No user exists in Database");
+		} else {
+			return user;
+		}
+	}
+
+	/// Get All Family Members added by all Users
+	public List<UserFamilyMember> getAllFamilyMembers() {
+		List<UserFamilyMember> members = userFamilyMemberRepository.findAll();
+		if (members.isEmpty()) {
+			throw new RecordNotFoundException("No record exists in Database");
+		} else {
 			return members;
 		}
 	}
-	
 
+	/// Delete User by ID
 	public void deleteUserById(int id) {
-		User user =repository.findByuid(id);
-		if(user == null) {
+		User user = userRepository.findByuid(id);
+		if (user == null) {
 			throw new RecordNotFoundException("User you are trying to delete does not exists");
-		}
-		else{
-			repository.deleteAllByuid(id);
+		} else {
+			userRepository.deleteAllByuid(id);
 		}
 	}
 
+	/// Delete User by Email
 	public void deleteUserByEmail(String email) {
-		User user =repository.findUserByEmail(email);
-		if(user == null) {
+		User user = userRepository.findUserByEmail(email);
+		if (user == null) {
 			throw new RecordNotFoundException("User you are trying to delete does not exists");
-		}
-		else{
-			repository.deleteUserByemail(email);
+		} else {
+			userRepository.deleteUserByemail(email);
 		}
 	}
 
-	public User updateMemberInfo(int id, User user) {
-		User fMem = repository.getById(id);
-		fMem = user;
-		return repository.save(fMem);
-	}
+//	///Update Member 
+//	public User updateMemberInfo(int id, User user) {
+//		User fMem = userRepository.getById(id);
+//		fMem = user;
+//		return userRepository.save(fMem);
+//	}
 
+	// Get User by ID
 	public User getUserById(int id) {
-		User user = repository.findByuid(id);
-		if(user == null) {
+		User user = userRepository.findByuid(id);
+		if (user == null) {
 			throw new RecordNotFoundException("User Does not Exists");
-		}
-		else {
+		} else {
 			return user;
 		}
 	}
-	
-	public List<User> getUsersByCity(String city){
-		List<User> user = repository.findUserBycity(city);
-		if(user.isEmpty()) {
-			throw new RecordNotFoundException("NO User avialable from given city");	
-		}
-		else {
+
+	/// Get Users by City
+	public List<User> findUsersByCity(String city) {
+		List<User> user = userRepository.findUserBycity(city);
+		if (user.isEmpty()) {
+			throw new RecordNotFoundException("NO User available from given city");
+		} else {
 			return user;
 		}
 	}
-	
-	public List<User> getUsersByAge(int age){
-		List<User> user = repository.findUserByage(age);
-		if(user.isEmpty()) {
-			throw new RecordNotFoundException("NO User avialable of given Age");	
-		}
-		else {
+
+	/// Get Users by Age
+	public List<User> getUsersByAge(int age) {
+		List<User> user = userRepository.findUserByage(age);
+		if (user.isEmpty()) {
+			throw new RecordNotFoundException("NO User available of given Age");
+		} else {
 			return user;
 		}
 	}

@@ -21,7 +21,7 @@ public class AppUserController {
 	@Autowired
 	private AppUserService userService;
 
-	@PostMapping("/registerAdmin")
+	@PostMapping("/authenticationRegister")
 	public AppUser register(@RequestBody AppUser appUser) {
 		log.info("registerController");
 		return userService.register(appUser);
@@ -40,6 +40,7 @@ public class AppUserController {
 		log.info("loginController");
 		log.info(appUser.getUsername());
 		log.info(appUser.getPassword());
+		
 		AppUser appUser2 = userService.login(appUser);
 		if ((appUser.getUsername().equals(appUser2.getUsername())
 				&& (appUser.getPassword().equals(appUser2.getPassword())))) {

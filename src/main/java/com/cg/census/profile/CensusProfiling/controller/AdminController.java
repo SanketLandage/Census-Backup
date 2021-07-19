@@ -26,7 +26,6 @@ import io.swagger.annotations.Authorization;
 
 
 @RestController
-
 public class AdminController {
 	
 public static final Logger LOG = LoggerFactory.getLogger(User.class);
@@ -39,10 +38,10 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 	
 	/// Admin can add Users
 	@PostMapping("/addUser")
-	public User userRegister(@RequestBody User user) {
+	public User addUser(@RequestBody User user) {
 		LOG.info("addUser");
 		if (appUserService.loginStatus().getRole().toString().equals("ADMIN")) {
-		return service.userRegister(user);
+		return service.addUser(user);
 		}
 		else {
 			throw new NoAccessException("You dont have access");
@@ -72,11 +71,11 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 	
 	
 	///////Get Users by First Name
-	@GetMapping("/getUserByfirstname/{firstName}")
+	@GetMapping("/getUsersByfirstname/{firstName}")
 	public List<User> getByFirstName(@PathVariable("firstName") String firstName) {
 		LOG.info("getByFirstName");
 		if (appUserService.loginStatus().getRole().toString().equals("ADMIN")) {
-		return service.findUserByFirstName(firstName);
+		return service.findUsersByFirstName(firstName);
 		}
 		else {
 			throw new NoAccessException("You dont have access");
@@ -99,7 +98,7 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 	public List<User> getByLastName(@PathVariable("lastName") String lastName) {
 		LOG.info("getBylastName");
 		if (appUserService.loginStatus().getRole().toString().equals("ADMIN")) {
-		return service.findUserByLastName(lastName);
+		return service.findUsersByLastName(lastName);
 		}
 		else {
 			throw new NoAccessException("You dont have access");
@@ -133,7 +132,7 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 	public List<User> getUserByCity(@PathVariable("City") String city) {
 		LOG.info("getByEmail");
 		if (appUserService.loginStatus().getRole().toString().equals("ADMIN")) {
-		return service.getUsersByCity(city);
+		return service.findUsersByCity(city);
 		}
 		else {
 			throw new NoAccessException("You dont have access");
@@ -142,32 +141,32 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 	
 	
 	///Admin can get All users by their Gender
-	@GetMapping("/getbyeGender/{gender}")
+	@GetMapping("/getByGender/{gender}")
 	public List<User> getByGender(@PathVariable("gender") String gender) {
 		LOG.info("getByEmail");
 		if (appUserService.loginStatus().getRole().toString().equals("ADMIN")) {
-		return service.findUserByGender(gender);
+		return service.findUsersByGender(gender);
 		}
 		else {
 			throw new NoAccessException("You dont have access");
 		}
 	}
 	
-	@GetMapping("/getTargetedUsers")
+	@GetMapping("/getUsersByAgeGroup")
 	public List<User> getTargetedUsers(){
 		LOG.info("Targeted Age Gorup");
 		if (appUserService.loginStatus().getRole().toString().equals("ADMIN")) {
-			return service.findTargetedUsers();
+			return service.findUsersByAgeGroup();
 		}else {
 			throw new NoAccessException("You dont have access");
 		}
 	}
 	
-	@GetMapping("/getTargetedMembers")
+	@GetMapping("/getMembersByAgeGroup")
 	public List<UserFamilyMember> getTargetedMembers(){
 		LOG.info("Targeted Age Gorup");
 		if (appUserService.loginStatus().getRole().toString().equals("ADMIN")) {
-			return service.findTargetedMembers();
+			return service.findMembersByAgeGroup();
 		}else {
 			throw new NoAccessException("You dont have access");
 		}
@@ -193,11 +192,6 @@ public static final Logger LOG = LoggerFactory.getLogger(User.class);
 		}
 	}
 	
-//	@ApiOperation(value = "Update Users information" , authorizations = { @Authorization(value = "jwtToken")})
-//	@PutMapping("/updateUserInfo/{id}")
-//	public User updateMemId(@PathVariable("id") int id , @RequestBody User user) {
-//		LOG.info("Update User Info");
-//		return service.updateMemberInfo(id, user);
-//	}
+
 	
 }

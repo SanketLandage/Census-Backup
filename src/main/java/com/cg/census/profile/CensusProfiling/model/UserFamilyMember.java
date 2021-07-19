@@ -28,7 +28,7 @@ public class UserFamilyMember {
 	private String memGender;
 
 	@Column(nullable = false)
-	private String relationWithMember;
+	private String relationWithUser;
 
 	@Column(nullable = false)
 	private int ageOfMember;
@@ -45,13 +45,13 @@ public class UserFamilyMember {
 	}
 
 	public UserFamilyMember(int memId, String memFirstName, String memLastName, String memGender,
-			String relationWithMember, int ageOfMember, User user) {
+			String relationWithUser, int ageOfMember, User user) {
 		super();
 		this.memId = memId;
 		this.memFirstName = memFirstName;
 		this.memLastName = memLastName;
 		this.memGender = memGender;
-		this.relationWithMember = relationWithMember;
+		this.relationWithUser = relationWithUser;
 		this.ageOfMember = ageOfMember;
 		this.user = user;
 	}
@@ -105,11 +105,11 @@ public class UserFamilyMember {
 	}
 
 	public String getRelationWithMember() {
-		return relationWithMember;
+		return relationWithUser;
 	}
 
 	public void setRelationWithMember(String relationWithMember) {
-		this.relationWithMember = relationWithMember;
+		this.relationWithUser = relationWithMember;
 	}
 
 	public String getEducation() {
